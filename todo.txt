@@ -1,0 +1,7 @@
+
+Firebase
+1. Add firebase to android
+2. Add firebase to ios
+3. Add firebase to web
+4. firebare.initializeapp() -> android and ios
+firebase.options
