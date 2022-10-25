@@ -10,8 +10,8 @@ class Helper {
 
   //getting th data from sp
   static Future<bool?> getUserLoggedInStatus() async {
-    SharedPreferences _localDatasource = await SharedPreferences.getInstance();
+    SharedPreferences localDatasource = await SharedPreferences.getInstance();
 
-    return _localDatasource.getBool(userLoggedInKey);
+    return localDatasource.getBool(userLoggedInKey);
   }
 }

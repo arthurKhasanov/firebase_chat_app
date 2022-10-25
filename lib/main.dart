@@ -1,4 +1,5 @@
-import 'package:firebase_chat_app/core/constants/constants.dart';
+import 'package:firebase_chat_app/core/constants/firebase_constants.dart';
+import 'package:firebase_chat_app/core/theme_data.dart';
 import 'package:firebase_chat_app/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,10 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: FirebaseOptions(
-        apiKey: Constants.apiKey,
-        appId: Constants.appId,
-        messagingSenderId: Constants.messagingSenderId,
-        projectId: Constants.projectId,
+        apiKey: FirebaseConstants.apiKey,
+        appId: FirebaseConstants.appId,
+        messagingSenderId: FirebaseConstants.messagingSenderId,
+        projectId: FirebaseConstants.projectId,
       ),
     );
   } else {
@@ -53,6 +54,7 @@ class _ChatAppState extends State<ChatApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: theme,
       home: isSignedIn ? const HomePage() : const LoginPage(),
     );
   }
