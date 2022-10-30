@@ -1,12 +1,12 @@
 import 'package:firebase_chat_app/core/constants/firebase_constants.dart';
 import 'package:firebase_chat_app/core/theme_data.dart';
-import 'package:firebase_chat_app/pages/home_page.dart';
+import 'package:firebase_chat_app/presentation/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 import 'halper/helper.dart';
-import 'pages/login_page.dart';
+import 'presentation/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
