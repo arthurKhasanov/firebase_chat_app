@@ -1,10 +1,10 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widgets/circle_clipper.dart';
-import '../widgets/login_form_container.dart';
+import '../widgets/sliding_container.dart';
 
 // keep in touch all over the world
 
@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
       body: GestureDetector(
         onTap: () {
           SystemChannels.textInput.invokeMethod('TextInput.hide');
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: SingleChildScrollView(
           child: SizedBox(
@@ -79,13 +80,27 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                     const SizedBox(
                       height: 16,
                     ),
-                    const Text(
-                      'Keep in touch all over the world',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Sniglet',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400),
+                    Center(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 3,
+                        child: AnimatedTextKit(
+                          pause: const Duration(milliseconds: 1000),
+                          animatedTexts: [
+                            TyperAnimatedText(''),
+                            TyperAnimatedText(
+                              'Keep in touch all over the world',
+                              speed: const Duration(milliseconds: 30),
+                              textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Sniglet',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                          isRepeatingAnimation: false,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 16,
@@ -130,52 +145,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SlidingContainer extends StatefulWidget {
-  const SlidingContainer({super.key});
-
-  @override
-  State<SlidingContainer> createState() => _SlidingContainerState();
-}
-
-class _SlidingContainerState extends State<SlidingContainer>
-    with TickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _offset;
-  double _opacity = 0.0;
-
-  void _updateOpacity() {
-    setState(() {
-      _opacity = 1.0;
-    });
-  }
-
-  @override
-  void initState() {
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
-    _offset = Tween(begin: const Offset(0.0, 0.8), end: const Offset(0, 0.62))
-        .animate(_controller);
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _updateOpacity();
-      _controller.forward();
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      duration: const Duration(milliseconds: 300),
-      opacity: _opacity,
-      child: SlideTransition(
-        position: _offset,
-        child: const LoginFormContainer(),
       ),
     );
   }

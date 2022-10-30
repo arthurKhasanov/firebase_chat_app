@@ -9,11 +9,24 @@ final ThemeData theme = ThemeData(
         color: Color.fromARGB(135, 255, 255, 255),
         fontSize: 25,
         fontWeight: FontWeight.normal),
+    errorStyle:const TextStyle(
+        fontFamily: 'Sniglet',
+        color: Color.fromARGB(135, 255, 255, 255),
+        fontSize: 15,
+        fontWeight: FontWeight.normal), 
     focusedBorder: OutlineInputBorder(
       borderSide: const BorderSide(color: Colors.white, width: 2),
       borderRadius: BorderRadius.circular(40),
     ),
     enabledBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.white, width: 2),
+      borderRadius: BorderRadius.circular(40),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: Color.fromARGB(255, 252, 112, 102), width: 2),
+      borderRadius: BorderRadius.circular(40),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
       borderSide: const BorderSide(color: Colors.white, width: 2),
       borderRadius: BorderRadius.circular(40),
     ),
